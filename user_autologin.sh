@@ -1,7 +1,6 @@
 #!/bin/bash
 
 function autologinConfig() {
-    touch lightdm.conf
     echo "[SeatDefaults]" >> /etc/lightdm/lightdm.conf
     echo "autologin-user=$username" >> /etc/lightdm/lightdm.conf
     echo "autologin-user-timeout=0" >> /etc/lightdm/lightdm.conf
@@ -18,6 +17,7 @@ if [ $? -ne 0 ]; then
     echo 'ATTENTION: No username found!'
 else 
     if [[ ! -f lightdm.conf ]]; then
+        touch lightdm.conf
         autologinConfig;
     else
         echo -n > lightdm.conf
